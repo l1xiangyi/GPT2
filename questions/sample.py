@@ -79,7 +79,10 @@ def sample(model, start_text, config, length, temperature=None, temperature_hori
             ##                   Pytorch multinomial sampling: https://pytorch.org/docs/stable/generated/torch.multinomial.html
             ## Hint: Implementation should only takes 3~5 lines of code.
             ##       The text generated should look like a technical paper.
-
+            probabilities = F.softmax(logits, dim=-1)
+            sample = torch.multinomial(probabilities, num_samples=1)
+            output.append(sample)
+            current_text = sample
             past = new_past
 
         output = torch.cat(output, dim=1)
