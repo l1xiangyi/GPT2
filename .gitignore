@@ -1,2 +1,4 @@
 
 gpt2-pytorch_model.bin
+*zip
+.DS_Store
